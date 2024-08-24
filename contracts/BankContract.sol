@@ -26,11 +26,11 @@ contract BankContract {
         emit CreatedAccount(msg.sender, _name);
     }
 
-    function deposit(uint256 _amount) public payable {
-        require(_amount > 0, "Deposit amount must be greater than zero");
+    function deposit() public payable {
+        require(msg.value > 0, "Deposit amount must be greater than zero");
         
-        accounts[msg.sender].balance += _amount; 
-        emit Deposit(msg.sender, _amount);
+        accounts[msg.sender].balance += msg.value; 
+        emit Deposit(msg.sender, msg.value);
     }
 
     function transfer(address payable _to, uint256 _amount) public {
